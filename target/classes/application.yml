@@ -1,0 +1,16 @@
+server.port: 8000
+
+
+spring:
+  application:
+    name: users
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+#    Para utilização com MongoDB, descomente as duas linhas abaixo, além das dependências no pom.xml.
+#  data:
+#    mongodb.uri: mongodb://${DB_URL:localhost}/users
+
+#    Para utilização com MySQL, descomente as duas linhas abaixo, além das dependências no pom.xml.
+  datasource:
+    url: jdbc:mysql://root:root@${DB_URL:localhost}/users?useSsl=false
