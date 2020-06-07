@@ -1,7 +1,7 @@
 # Desafio Backend
 
 ## Problema
-O PicPay é uma empresa de pagamentos que visa revolucionar a forma com que lidamos com dinheiro em nosso dia-a-dia. Um dos passos necessários para completarmos essa missão é implementar a criação de diferentes tipos de contas para utilização do nosso aplicativo. 
+Estamos em uma empresa de pagamentos que visa revolucionar a forma com que lidamos com dinheiro em nosso dia-a-dia. Um dos passos necessários para completarmos essa missão é implementar a criação de diferentes tipos de contas para utilização do nosso aplicativo. 
 É importante lembrar que o seu sistema será integrado aos nossos painéis internos e ao aplicativo.
 
 Todo o processo começa com a criação de um Usuário. Um usuário pode ter mais de um tipo de conta vinculada a ele. 
@@ -83,25 +83,4 @@ a definição do container da opção que não escolher para evitar desperdício
 
 Para verificar se a sua solução está funcionando, utilize o comando `docker-compose up --build` a partir do diretório raiz do projeto. A sua API estará mapeada para a porta `8000`do seu host local. 
 
-## Avaliação
-A avaliação da sua solução será constituída de duas etapas principais: **Correção objetiva** e **Correção qualitativa**. 
 
-Caso você não se sinta à vontade com a arquitetura proposta, você pode apresentar sua solução utilizando frameworks diferentes. 
-Porém, nesse caso, uma entrevista de **Code Review** será necessária para a avaliação da sua solução.
-
-A correção objetiva será realizada através da utilização de um script de correção automatizada. A correção qualitativa levará em conta os seguintes critérios:
-
-* Modelagem de Dados
-* Domínio da Linguagem
-* Legibilidade do Código
-* Estrutura do Código
-* Organização do Código
-* Design Patterns
-* Manutenibilidade do Código
-* Diferenciais: Testes Unitários e Cobertura de Testes
-
-## Como submeter
-Ao finalizar envie um email para **desafio@picpay.com** com seu Nome, Telefone para contato e a solução do desafio. 
-Caso já esteja em processo de avaliação, é interessante também informar o(a) seu(sua) recrutador(a) sobre a conclusão desta etapa.
-
-**Lembre-se de não enviar arquivos compilados e configurações de IDE ao submeter a sua solução.** 
