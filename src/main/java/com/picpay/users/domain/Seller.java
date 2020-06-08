@@ -2,33 +2,60 @@ package com.picpay.users.domain;
 
 import java.io.Serializable;
 
-public class Seller extends User implements Serializable{
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+
+@Entity
+public class Seller implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private Double userId;
+	@Id
+	private Integer id;
+	@OneToOne
+	@JoinColumn( name = "User_id")
+	@MapsId
+	private User userId;
 	private String razaoSocial;
 	private String nomeFantasia;
-	private Double CNPJ;
+	private String CNPJ;
 	private String username;
+	
 	
 	public Seller() {
 		
 	}
 
-	public Seller(Double userId, String razaoSocial, String nomeFantasia, Double cNPJ, String username) {
+	public Seller(Integer id, User userId, String razaoSocial, String nomeFantasia, String cNPJ, String username) {
 		super();
+		this.id = id;
 		this.userId = userId;
 		this.razaoSocial = razaoSocial;
 		this.nomeFantasia = nomeFantasia;
-		CNPJ = cNPJ;
+		this.CNPJ = cNPJ;
 		this.username = username;
+		
+	}
+		
+
+	public Integer getId() {
+		return id;
 	}
 
-	public Double getUserId() {
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public User getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Double userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 
@@ -48,11 +75,11 @@ public class Seller extends User implements Serializable{
 		this.nomeFantasia = nomeFantasia;
 	}
 
-	public Double getCNPJ() {
+	public String getCNPJ() {
 		return CNPJ;
 	}
 
-	public void setCNPJ(Double cNPJ) {
+	public void setCNPJ(String cNPJ) {
 		CNPJ = cNPJ;
 	}
 
@@ -68,7 +95,7 @@ public class Seller extends User implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -81,13 +108,15 @@ public class Seller extends User implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Seller other = (Seller) obj;
-		if (userId == null) {
-			if (other.userId != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!userId.equals(other.userId))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
+
+	
 	
 	
 	

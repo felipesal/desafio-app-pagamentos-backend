@@ -2,15 +2,34 @@ package com.picpay.users.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String CPF;
 	private String telefone;
 	private String email;
 	private String senha;
+	
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL,mappedBy = "userId")
+	private Consumer consumer;
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL,mappedBy = "userId")
+	private Seller seller;
 	
 	public User() {
 		
@@ -26,6 +45,7 @@ public class User implements Serializable{
 		this.telefone = telefone;
 		this.email = email;
 		this.senha = senha;
+		
 	}
 
 
@@ -77,6 +97,24 @@ public class User implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	public Consumer getConsumer() {
+		return consumer;
+	}
+
+	public void setConsumer(Consumer consumer) {
+		this.consumer = consumer;
+	}
+
+	public Seller getSeller() {
+		return seller;
+	}
+
+	public void setSeller(Seller seller) {
+		this.seller = seller;
+	}
+
+
 
 	@Override
 	public int hashCode() {
