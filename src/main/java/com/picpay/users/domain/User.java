@@ -40,7 +40,7 @@ public class User implements Serializable{
 	public User(Integer id, String nome, String CPF, String telefone, String email, String senha) {
 		super();
 		this.id = id;
-		this.nome = nome;
+		this.nome = nome.toLowerCase();
 		this.CPF = CPF;
 		this.telefone = telefone;
 		this.email = email;
