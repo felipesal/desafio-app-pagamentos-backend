@@ -1,5 +1,5 @@
 (X)Classe user
-()CPF e e-mail únicos
+(X)CPF e e-mail únicos
 (X)Consumer e Seller
 ()Username único
 (X)Listar usuários
