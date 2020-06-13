@@ -3,6 +3,7 @@ package com.picpay.users.domain;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.picpay.users.services.validation.UserInsert;
 
 @Entity
 public class User implements Serializable{
@@ -19,8 +21,11 @@ public class User implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private String CPF;
+	
+	@Column(unique = true)
+	private String cpf;
 	private String telefone;
+	@Column(unique=true)
 	private String email;
 	private String senha;
 	
@@ -37,11 +42,11 @@ public class User implements Serializable{
 
 	
 
-	public User(Integer id, String nome, String CPF, String telefone, String email, String senha) {
+	public User(Integer id, String nome, String cpf, String telefone, String email, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome.toLowerCase();
-		this.CPF = CPF;
+		this.cpf = cpf;
 		this.telefone = telefone;
 		this.email = email;
 		this.senha = senha;
@@ -66,12 +71,12 @@ public class User implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getCPF() {
-		return CPF;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCPF(String CPF) {
-		this.CPF = CPF;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getTelefone() {

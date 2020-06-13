@@ -1,18 +1,22 @@
 package com.picpay.users.resources;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.net.URI;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.picpay.users.DTO.UserDTO;
+import com.picpay.users.DTO.UserNewDTO;
 import com.picpay.users.domain.User;
 import com.picpay.users.resources.utils.URL;
 import com.picpay.users.services.UserService;
@@ -53,6 +57,17 @@ public class UsersResources {
 		Page<User> list = service.search(nomeDecoded, page, linesPerPage, orderBy, direction);
 		Page<UserDTO> listDto = list.map(obj -> new UserDTO(obj));
 		return ResponseEntity.ok().body(listDto);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody UserNewDTO userDto){
+		User user = service.fromDto(userDto);
+		user = service.insert(user);
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(user.getId()).toUri();
+		
+		return ResponseEntity.created(uri).build();
 	}
 	
 	
