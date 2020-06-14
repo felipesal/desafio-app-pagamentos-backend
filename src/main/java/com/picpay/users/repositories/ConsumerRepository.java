@@ -6,4 +6,6 @@ import com.picpay.users.domain.Consumer;
 
 public interface ConsumerRepository extends JpaRepository<Consumer, Integer> {
 	
+	Consumer findByUsername(String username);
+	
 }

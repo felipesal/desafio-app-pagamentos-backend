@@ -2,17 +2,16 @@ package com.picpay.users.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.picpay.users.interfaces.TipoUser;
+
 @Entity
-public class Seller implements Serializable{
+public class Seller implements Serializable, TipoUser{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -23,7 +22,7 @@ public class Seller implements Serializable{
 	private User userId;
 	private String razaoSocial;
 	private String nomeFantasia;
-	private String CNPJ;
+	private String cnpj;
 	private String username;
 	
 	
@@ -31,13 +30,13 @@ public class Seller implements Serializable{
 		
 	}
 
-	public Seller(Integer id, User userId, String razaoSocial, String nomeFantasia, String cNPJ, String username) {
+	public Seller(Integer id, User userId, String razaoSocial, String nomeFantasia, String cnpj, String username) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.razaoSocial = razaoSocial;
 		this.nomeFantasia = nomeFantasia;
-		this.CNPJ = cNPJ;
+		this.cnpj = cnpj;
 		this.username = username;
 		
 	}
@@ -75,12 +74,12 @@ public class Seller implements Serializable{
 		this.nomeFantasia = nomeFantasia;
 	}
 
-	public String getCNPJ() {
-		return CNPJ;
+	public String getCnpj() {
+		return cnpj;
 	}
 
-	public void setCNPJ(String cNPJ) {
-		CNPJ = cNPJ;
+	public void setCnpj(String cnpj) {
+		cnpj = cnpj;
 	}
 
 	public String getUsername() {

@@ -1,7 +1,7 @@
 (X)Classe user
 (X)CPF e e-mail únicos
 (X)Consumer e Seller
-()Username único
+(X)Username único
 (X)Listar usuários
 (X)Detalhar usuários
 (X)Filtrar por nome

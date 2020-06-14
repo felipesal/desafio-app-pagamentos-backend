@@ -6,4 +6,6 @@ import com.picpay.users.domain.Seller;
 
 public interface SellerRepository extends JpaRepository<Seller, Integer> {
 	
+	Seller findByUsername(String username);
+	
 }

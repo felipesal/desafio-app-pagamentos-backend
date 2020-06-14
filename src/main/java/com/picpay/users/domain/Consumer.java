@@ -3,15 +3,15 @@ package com.picpay.users.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.picpay.users.interfaces.TipoUser;
+
 @Entity
-public class Consumer implements Serializable{
+public class Consumer implements Serializable, TipoUser{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
