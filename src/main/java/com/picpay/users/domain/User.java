@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.picpay.users.services.validation.UserInsert;
 
 @Entity
 public class User implements Serializable{

@@ -5,7 +5,7 @@
 (X)Listar usuários
 (X)Detalhar usuários
 (X)Filtrar por nome
-()Filtrar por username
+(X)Filtrar por username
 
 ()API externa para transações
 ()Transações acima de 100 reais recusadas com erro 401

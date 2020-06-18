@@ -1,13 +1,21 @@
 package com.picpay.users.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.picpay.users.DTO.SellerNewDTO;
 import com.picpay.users.domain.Seller;
+import com.picpay.users.domain.Seller;
 import com.picpay.users.domain.User;
 import com.picpay.users.repositories.SellerRepository;
 import com.picpay.users.repositories.UserRepository;
+import com.picpay.users.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class SellerService {
@@ -18,22 +26,42 @@ public class SellerService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public Seller fromDto(SellerNewDTO sellerDto) {
-		User user = userRepository.findByEmail(sellerDto.getEmail());
+	public Seller fromDto(SellerNewDTO SellerDto) {
+		User user = userRepository.findByEmail(SellerDto.getEmail());
 		
-		Seller seller = new Seller(null, user, sellerDto.getRazao(), sellerDto.getFantasia(), sellerDto.getCnpj(), sellerDto.getUsername());
+		Seller Seller = new Seller(null, user, SellerDto.getRazao(), SellerDto.getFantasia(), SellerDto.getCnpj(), SellerDto.getUsername());
 		
 		
-		return seller;
+		return Seller;
 	}
 	
-	public Seller insert(Seller seller) {
+	public Seller insert(Seller Seller) {
 		
-		seller.setId(null);
+		Seller.setId(null);
 
-		seller = repo.save(seller);
+		Seller = repo.save(Seller);
 		
-		return seller;
+		return Seller;
+	}
+	
+	public Page<Seller> search(String username, Integer page, Integer linesPerPage, String orderBy, String direction) {
+		 
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		
+		return repo.findByUsername(username, pageRequest);
+	}
+	
+	public List<Seller> findAll(){
+		return repo.findAll();
+	}
+	
+	public Seller findById(Integer id) {
+		
+		Optional<Seller> obj = repo.findById(id);
+		
+		return obj.orElseThrow(()-> new ObjectNotFoundException (
+				"Objeto não encontrado. Id: " + id + ", Tipo: " + User.class.getName()));
+		
 	}
 	
 }
