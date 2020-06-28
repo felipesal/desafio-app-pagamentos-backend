@@ -19,7 +19,7 @@ services:
 #      o container utilizando a rede do host local.
 
 #      - DB_URL=users-db-mongo:27017
-#      - DB_URL=users-db-mysql:3306
+      - DB_URL=users-db-mysql:3306
 
   users-db-mongo:
     container_name: users-db-mongo

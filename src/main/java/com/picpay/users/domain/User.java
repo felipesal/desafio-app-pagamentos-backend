@@ -1,6 +1,8 @@
 package com.picpay.users.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,6 +37,14 @@ public class User implements Serializable{
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "userId")
 	private Seller seller;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "payer")
+	private List<Transaction> payerTransactions = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "receiver")
+	private List<Transaction> receiverTransactions = new ArrayList<>();
 	
 	public User() {
 		
@@ -118,7 +129,13 @@ public class User implements Serializable{
 		this.seller = seller;
 	}
 
+	public List<Transaction> getPayerTransactions() {
+		return payerTransactions;
+	}
 
+	public List<Transaction> getReceiverTransactions() {
+		return receiverTransactions;
+	}
 
 	@Override
 	public int hashCode() {

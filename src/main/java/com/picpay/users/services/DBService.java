@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.picpay.users.domain.Consumer;
 import com.picpay.users.domain.Seller;
+import com.picpay.users.domain.Transaction;
 import com.picpay.users.domain.User;
+import com.picpay.users.domain.enums.Status;
 import com.picpay.users.repositories.ConsumerRepository;
 import com.picpay.users.repositories.SellerRepository;
+import com.picpay.users.repositories.TransactionRepository;
 import com.picpay.users.repositories.UserRepository;
 
 @Service
@@ -23,6 +26,9 @@ public class DBService {
 	
 	@Autowired
 	private SellerRepository sellerRepository;
+	
+	@Autowired
+	private TransactionRepository transactionRepository;
 
     public void instanciateTestDataBase() {
         
@@ -60,6 +66,12 @@ public class DBService {
     
     sellerRepository.saveAll(Arrays.asList(s1, s2));
     userRepository.saveAll(Arrays.asList(u1,u2,u3,u4, u5, u6));
+    
+    Transaction t1 = new Transaction(null, u1, u2, Status.SOLICITADO, 58.89);
+    Transaction t2 = new Transaction(null, u2, u3, Status.SOLICITADO, 45.69);
+    Transaction t3 = new Transaction(null, u5, u1, Status.SOLICITADO, 4.89);
+    
+    transactionRepository.saveAll(Arrays.asList(t1, t2, t3));
     
    
 	

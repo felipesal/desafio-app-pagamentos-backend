@@ -1,5 +1,6 @@
 package com.picpay.users.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.picpay.users.DTO.UserNewDTO;
+import com.picpay.users.domain.Transaction;
 import com.picpay.users.domain.User;
 import com.picpay.users.repositories.UserRepository;
 import com.picpay.users.services.exceptions.ObjectNotFoundException;
@@ -61,6 +63,27 @@ public class UserService {
 		user = repo.save(user);
 		
 		return user;
+	}
+	
+	public List<Transaction> searchTransactions(Integer userId){
+		
+		List<Transaction> allTransactions = new ArrayList<>();
+		Optional<User> obj = repo.findById(userId);
+		List<Transaction> payerTransactions = obj.get().getPayerTransactions();
+		List<Transaction> receiverTransactions = obj.get().getReceiverTransactions();
+		
+		for(Transaction x : payerTransactions) {
+			allTransactions.add(x);
+		}
+		
+		for(Transaction x: receiverTransactions) {
+			allTransactions.add(x);
+		}
+		
+		return allTransactions;
+		
+		
+		
 	}
 	
 }

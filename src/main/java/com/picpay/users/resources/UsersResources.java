@@ -1,6 +1,7 @@
 package com.picpay.users.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.picpay.users.DTO.UserDTO;
 import com.picpay.users.DTO.UserNewDTO;
+import com.picpay.users.domain.Transaction;
 import com.picpay.users.domain.User;
 import com.picpay.users.resources.utils.URL;
 import com.picpay.users.services.UserService;
@@ -68,6 +70,13 @@ public class UsersResources {
 				.buildAndExpand(user.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value = "/{userId}/transactions", method = RequestMethod.GET)
+	public ResponseEntity<List<Transaction>> findTransactions(@PathVariable Integer userId){
+		List<Transaction> list = service.searchTransactions(userId);
+		
+		return ResponseEntity.ok().body(list);
 	}
 	
 	
